@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+</head>
+<body>
+  <div id="site-header"></div>
+<!-- Your main page content goes here -->
+<div id="site-footer"></div>
+
+  <h1 id="post-title">Loading...</h1>
+  <div id="post-content">Please wait while we load the article...</div>
+
+  <script>
+    const slug = window.location.pathname.split("/").filter(Boolean).pop();
+    fetch(`https://stanx.online/wp-json/wp/v2/posts?slug=${slug}`)
+      .then(res => res.json())
+      .then(data => {{
+        const post = data[0];
+        if (post) {{
+          document.title = post.title.rendered;
+          document.getElementById('post-title').innerHTML = post.title.rendered;
+          document.getElementById('post-content').innerHTML = post.content.rendered;
+        }} else {{
+          document.body.innerHTML = "<h2>Post not found</h2>";
+        }}
+      }})
+      .catch(err => {{
+        document.body.innerHTML = "<h2>Error loading post.</h2>";
+      }});
+  </script>
+  <script>
+  // Load Header
+  fetch('/header.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('site-header').innerHTML = data;
+    });
+
+  // Load Footer
+  fetch('/footer.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('site-footer').innerHTML = data;
+    });
+</script>
+
+</body>
+</html>

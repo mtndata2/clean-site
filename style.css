@@ -1,0 +1,44 @@
+
+
+main {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+#post-content {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+@media (max-width: 600px) {
+  table {
+    font-size: 16px;
+  }
+}
+
+ul.homepage-posts {
+  list-style-type: none;
+  padding-left: 0;
+  text-align: center;
+}
+
+ul.homepage-posts li {
+  margin: 10px 0;
+}
+
+ul.homepage-posts a {
+  font-size: 18px;
+  text-decoration: none;
+  color: #006400;
+}
